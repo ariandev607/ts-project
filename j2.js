@@ -97,3 +97,26 @@ document.getElementById("editBookForm").addEventListener("submit", async functio
 
     loaddata();
 });
+
+
+
+document.getElementById("addBookForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+   let form_data = new FormData(this);
+
+    let address = await fetch("t8.php", {
+        method:'POST', 
+        body:form_data
+    });
+
+    this.reset();
+
+    let modal = bootstrap.Modal.getInstance(document.getElementById("staticBackdrop"));
+
+    modal.hide();
+
+    loaddata();
+
+});

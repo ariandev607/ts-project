@@ -27,6 +27,17 @@ if(isset($_POST['edit_bookname'])){
 }
 
 
+if(isset($_POST['bookname'])){
+
+    $bookname = $_POST['bookname'];
+    $bookpage = $_POST['bookpage'];
+    $bookyear = $_POST['bookyear'];
+
+    mysqli_query($db, "insert into books (book_name, book_page, book_year)
+    values ('$bookname', '$bookpage', '$bookyear')");
+}
+
+
 $user_db = mysqli_query($db, "select * from user");
 
 $book_db = mysqli_query($db, "select * from books where del=0");
