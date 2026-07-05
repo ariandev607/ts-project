@@ -50,72 +50,15 @@ loaddata();
 
 
 async function delet(id){
-
+    
     let form_data = new FormData();
 
     form_data.append("del", id);
 
     let address = await fetch("t8.php", {
-
         method:'POST', 
         body:form_data
     });
 
     loaddata();
-    
 }
-
-
-function edit(id, name, page, year){
-
-    document.getElementById("edit_id").value = id;
-    document.getElementById("edit_bookname").value = name;
-    document.getElementById("edit_bookpage").value = page;
-    document.getElementById("edit_bookyear").value = year;
-
-    let modal = new bootstrap.Modal(document.getElementById("model_edit"));
-
-    modal.show();
-}
-
-
-document.getElementById("editBookForm").addEventListener("submit", async function(e){
-
-    e.preventDefault();
-
-     let form_data = new FormData(this);
-
-    let address = await fetch("t8.php", {
-
-        method:'POST', 
-        body:form_data
-    });
-
-    let modal = bootstrap.Modal.getInstance(document.getElementById("model_edit"));
-
-    modal.hide();
-
-    loaddata();
-});
-
-
-document.getElementById("addBookForm").addEventListener("submit", async function(e){
-    
-    e.preventDefault();
-
-    let form_data = new FormData(this);
-
-    let address = await fetch("t8.php", {
-
-        method:'POST', 
-        body:form_data
-    });
-
-    this.reset();
-
-    let modal = bootstrap.Modal.getInstance(document.getElementById("staticBackdrop"));
-
-    modal.hide();
-
-    loaddata();
-});
