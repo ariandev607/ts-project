@@ -35,8 +35,10 @@ async function loaddata() {
             <td>${b.book_year}</td>
 
             <td>
+                <button class="btn btn-primary btn-sm"
+                 onclick="delet(${b.id}, '${b.book_name}', ${b.book_page}, ${b.book_year})">ویرایش</button>
 
-                
+                <button class="btn btn-danger btn-sm" onclick="delet(${b.id})">حذف</button>
             </td>
         </tr>`;
         
