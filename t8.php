@@ -4,11 +4,32 @@
 include("db.php");
 
 
+if(isset($_POST['del'])){
+
+    $delet = $_POST['del'];
+
+    mysqli_query($db, "update books set del=1 where id='$delet'");
+}
+
+
+if(isset($_POST['edit_bookname'])){
+
+    $id = $_POST['id'];
+     $ebookname = $_POST['edit_bookname'];
+    $ebookpage = $_POST['edit_bookpage'];
+    $ebookyear = $_POST['edit_bookyear'];
+
+    mysqli_query($db, "update books set
+     book_name='$ebookname',
+      book_page='$ebookpage', 
+      book_year='$ebookyear' where id='$id'");
+
+}
 
 
 $user_db = mysqli_query($db, "select * from user");
 
-$book_db = mysqli_query($db, "select * from books");
+$book_db = mysqli_query($db, "select * from books where del=0");
 
 
 $users = [];

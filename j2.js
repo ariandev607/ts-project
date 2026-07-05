@@ -36,7 +36,7 @@ async function loaddata() {
 
             <td>
                 <button class="btn btn-primary btn-sm"
-                 onclick="delet(${b.id}, '${b.book_name}', ${b.book_page}, ${b.book_year})">ویرایش</button>
+                 onclick="edit(${b.id}, '${b.book_name}', ${b.book_page}, ${b.book_year})">ویرایش</button>
 
                 <button class="btn btn-danger btn-sm" onclick="delet(${b.id})">حذف</button>
             </td>
@@ -62,3 +62,38 @@ async function delet(id){
 
     loaddata();
 }
+
+
+
+function edit(id, name, page, year){
+
+    document.getElementById("edit_id").value = id;
+    document.getElementById("edit_bookname").value = name;
+    document.getElementById("edit_bookpage").value = page;
+    document.getElementById("edit_bookyear").value = year;
+
+    let modal = new bootstrap.Modal(document.getElementById("model_edit"));
+
+    modal.show();
+}
+
+
+document.getElementById("editBookForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+   let form_data = new FormData(this);
+
+    let address = await fetch("t8.php", {
+        method:'POST', 
+        body:form_data
+    });
+
+    this.reset();
+
+    let modal = bootstrap.Modal.getInstance(document.getElementById("model_edit"));
+
+    modal.hide();
+
+    loaddata();
+});
